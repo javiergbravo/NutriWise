@@ -5,9 +5,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.compose.rememberNavController
 import com.jgbravo.nutriwise.app.navigation.Destination.DashboardDestination
-import com.jgbravo.nutriwise.ui.mealPlan.DashboardScreen
-import com.jgbravo.nutriwise.ui.mealPlan.MealPlanDetailEvent
-import com.jgbravo.nutriwise.ui.mealPlan.MealPlanDetailViewModel
+import com.jgbravo.nutriwise.ui.mealPlanDetail.DashboardScreen
+import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent
+import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

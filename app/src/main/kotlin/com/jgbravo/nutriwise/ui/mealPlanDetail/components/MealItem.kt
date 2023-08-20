@@ -1,4 +1,4 @@
-package com.jgbravo.nutriwise.ui.mealPlan.components
+package com.jgbravo.nutriwise.ui.mealPlanDetail.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,9 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jgbravo.nutriwise.R
 import com.jgbravo.nutriwise.R.drawable
-import com.jgbravo.nutriwise.ui.mealPlan.models.Meal
-import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.BREAKFAST
-import com.jgbravo.nutriwise.ui.mealPlan.models.getNameRes
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.Meal
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.BREAKFAST
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.getNameRes
 
 @Composable
 fun MealItem(

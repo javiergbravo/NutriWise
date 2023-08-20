@@ -1,4 +1,4 @@
-package com.jgbravo.nutriwise.ui.mealPlan
+package com.jgbravo.nutriwise.ui.mealPlanDetail
 
 import android.content.res.Configuration
 import android.widget.Toast
@@ -17,15 +17,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jgbravo.nutriwise.ui.mealPlan.MealPlanDetailEvent.OnErrorScreen
-import com.jgbravo.nutriwise.ui.mealPlan.MealPlanDetailEvent.OnMealClicked
-import com.jgbravo.nutriwise.ui.mealPlan.components.MealItem
-import com.jgbravo.nutriwise.ui.mealPlan.models.Meal
-import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.AFTERNOON_SNACK
-import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.BREAKFAST
-import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.DINNER
-import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.LUNCH
-import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.MORNING_SNACK
+import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnErrorScreen
+import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnMealClicked
+import com.jgbravo.nutriwise.ui.mealPlanDetail.components.MealItem
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.Meal
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.AFTERNOON_SNACK
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.BREAKFAST
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.DINNER
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.LUNCH
+import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.MORNING_SNACK
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
