@@ -1,6 +1,7 @@
 package com.jgbravo.nutriwise.ui.dashboard
 
 import androidx.lifecycle.viewModelScope
+import com.jgbravo.data.repository.MealRepository
 import com.jgbravo.nutriwise.base.presentation.BaseViewModel
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnMealClicked
@@ -14,7 +15,9 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
-class DashboardViewModel : BaseViewModel<DashboardState, DashboardEvent>() {
+class DashboardViewModel(
+    private val mealRepository: MealRepository
+) : BaseViewModel<DashboardState, DashboardEvent>() {
 
     override val mutableState = MutableStateFlow(DashboardState())
     override val state = combine(mutableState, getMealsFromRepository()) { state, meals ->

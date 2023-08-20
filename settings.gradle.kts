@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "NutriWise"
 include(":app")
+include(":data")
