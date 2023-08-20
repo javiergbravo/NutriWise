@@ -1,4 +1,4 @@
-package com.jgbravo.nutriwise.ui.dashboard.models
+package com.jgbravo.nutriwise.ui.mealPlan.models
 
 data class Meal(
     val mealType: MealType,

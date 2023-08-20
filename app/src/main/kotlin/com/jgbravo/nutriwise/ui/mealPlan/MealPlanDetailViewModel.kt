@@ -1,12 +1,12 @@
-package com.jgbravo.nutriwise.ui.dashboard
+package com.jgbravo.nutriwise.ui.mealPlan
 
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.data.repository.MealRepository
 import com.jgbravo.nutriwise.base.presentation.BaseViewModel
-import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnErrorScreen
-import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnMealClicked
-import com.jgbravo.nutriwise.ui.dashboard.models.Meal
-import com.jgbravo.nutriwise.ui.dashboard.models.MealType
+import com.jgbravo.nutriwise.ui.mealPlan.MealPlanDetailEvent.OnErrorScreen
+import com.jgbravo.nutriwise.ui.mealPlan.MealPlanDetailEvent.OnMealClicked
+import com.jgbravo.nutriwise.ui.mealPlan.models.Meal
+import com.jgbravo.nutriwise.ui.mealPlan.models.MealType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,11 +15,11 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
-class DashboardViewModel(
+class MealPlanDetailViewModel(
     private val mealRepository: MealRepository
-) : BaseViewModel<DashboardState, DashboardEvent>() {
+) : BaseViewModel<MealPlanDetailState, MealPlanDetailEvent>() {
 
-    override val mutableState = MutableStateFlow(DashboardState())
+    override val mutableState = MutableStateFlow(MealPlanDetailState())
     override val state = combine(mutableState, getMealsFromRepository()) { state, meals ->
         if (state.meals != meals) {
             state.copy(
@@ -28,9 +28,9 @@ class DashboardViewModel(
         } else {
             state
         }
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), DashboardState())
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), MealPlanDetailState())
 
-    override fun onEvent(event: DashboardEvent) {
+    override fun onEvent(event: MealPlanDetailEvent) {
         when (event) {
             OnErrorScreen -> mutableState.update {
                 it.copy(error = null)

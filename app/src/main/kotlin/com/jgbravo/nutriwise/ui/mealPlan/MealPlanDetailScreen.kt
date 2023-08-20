@@ -1,4 +1,4 @@
-package com.jgbravo.nutriwise.ui.dashboard
+package com.jgbravo.nutriwise.ui.mealPlan
 
 import android.content.res.Configuration
 import android.widget.Toast
@@ -17,26 +17,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jgbravo.nutriwise.ui.dashboard.composables.MealItem
-import com.jgbravo.nutriwise.ui.dashboard.models.Meal
-import com.jgbravo.nutriwise.ui.dashboard.models.MealType.AFTERNOON_SNACK
-import com.jgbravo.nutriwise.ui.dashboard.models.MealType.BREAKFAST
-import com.jgbravo.nutriwise.ui.dashboard.models.MealType.DINNER
-import com.jgbravo.nutriwise.ui.dashboard.models.MealType.LUNCH
-import com.jgbravo.nutriwise.ui.dashboard.models.MealType.MORNING_SNACK
+import com.jgbravo.nutriwise.ui.mealPlan.MealPlanDetailEvent.OnErrorScreen
+import com.jgbravo.nutriwise.ui.mealPlan.MealPlanDetailEvent.OnMealClicked
+import com.jgbravo.nutriwise.ui.mealPlan.components.MealItem
+import com.jgbravo.nutriwise.ui.mealPlan.models.Meal
+import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.AFTERNOON_SNACK
+import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.BREAKFAST
+import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.DINNER
+import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.LUNCH
+import com.jgbravo.nutriwise.ui.mealPlan.models.MealType.MORNING_SNACK
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DashboardScreen(
-    state: DashboardState,
-    onEvent: (DashboardEvent) -> Unit
+    state: MealPlanDetailState,
+    onEvent: (MealPlanDetailEvent) -> Unit
 ) {
     val context = LocalContext.current
 
     LaunchedEffect(key1 = state.error) {
         val message = state.error ?: return@LaunchedEffect
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-        onEvent(DashboardEvent.OnErrorScreen)
+        onEvent(OnErrorScreen)
     }
 
     Scaffold { padding ->
@@ -54,7 +56,7 @@ fun DashboardScreen(
                     MealItem(
                         meal = meal,
                         backgroundColor = Color.White,
-                        onMealClick = { onEvent(DashboardEvent.OnMealClicked(meal)) },
+                        onMealClick = { onEvent(OnMealClicked(meal)) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(16.dp)
@@ -71,7 +73,7 @@ fun DashboardScreen(
 @Composable
 fun DashboardScreenPreview() {
     DashboardScreen(
-        state = DashboardState(
+        state = MealPlanDetailState(
             meals = listOf(
                 Meal(
                     mealType = BREAKFAST,
