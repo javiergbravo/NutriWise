@@ -1,7 +1,7 @@
-package com.jgbravo.data.repository
+package com.jgbravo.nutriwise.data.repository
 
 import android.util.Log
-import com.jgbravo.data.repository.models.MealPlanEntity
+import com.jgbravo.nutriwise.data.repository.models.MealPlanEntity
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
 import kotlinx.coroutines.flow.Flow

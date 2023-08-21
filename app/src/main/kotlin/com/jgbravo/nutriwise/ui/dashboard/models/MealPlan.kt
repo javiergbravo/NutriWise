@@ -1,7 +1,7 @@
 package com.jgbravo.nutriwise.ui.dashboard.models
 
-import com.jgbravo.data.repository.models.MealEntity
-import com.jgbravo.data.repository.models.PlanState
+import com.jgbravo.nutriwise.data.repository.models.MealEntity
+import com.jgbravo.nutriwise.data.repository.models.PlanState
 import java.time.LocalDateTime
 
 data class MealPlan(

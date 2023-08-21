@@ -1,6 +1,6 @@
-package com.jgbravo.data.repository
+package com.jgbravo.nutriwise.data.repository
 
-import com.jgbravo.data.repository.models.MealPlanEntity
+import com.jgbravo.nutriwise.data.repository.models.MealPlanEntity
 import kotlinx.coroutines.flow.Flow
 import org.mongodb.kbson.ObjectId
 

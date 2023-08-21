@@ -1,4 +1,4 @@
-package com.jgbravo.data.utils
+package com.jgbravo.nutriwise.data.utils
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime

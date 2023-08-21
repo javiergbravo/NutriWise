@@ -21,12 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jgbravo.data.repository.models.PlanState
 import com.jgbravo.nutriwise.R
 import com.jgbravo.nutriwise.app.theme.GreenActive
 import com.jgbravo.nutriwise.app.theme.GreyInactive
 import com.jgbravo.nutriwise.app.theme.LightBlueGrey
 import com.jgbravo.nutriwise.app.theme.RedStop
+import com.jgbravo.nutriwise.data.repository.models.PlanState
 import com.jgbravo.nutriwise.ui.dashboard.models.MealPlan
 import com.jgbravo.nutriwise.utils.DateManager
 import java.time.LocalDateTime

@@ -1,5 +1,6 @@
-package com.jgbravo.data.repository.models
+package com.jgbravo.nutriwise.data.repository.models
 
+import com.jgbravo.nutriwise.data.repository.models.PlanState.ACTIVE
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmInstant
 import io.realm.kotlin.types.RealmList
@@ -16,7 +17,7 @@ class MealPlanEntity : RealmObject {
     var description: String? = null
     var kcal: Int = 0
     var meals: RealmList<MealEntity> = realmListOf()
-    var state: String = PlanState.ACTIVE.value
+    var state: String = ACTIVE.value
 
     @Index
     var timestamp: RealmInstant = RealmInstant.now()

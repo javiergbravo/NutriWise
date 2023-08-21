@@ -1,8 +1,8 @@
 package com.jgbravo.nutriwise.ui.mealPlanDetail
 
 import androidx.lifecycle.viewModelScope
-import com.jgbravo.data.repository.MealRepository
 import com.jgbravo.nutriwise.base.presentation.BaseViewModel
+import com.jgbravo.nutriwise.data.repository.MealRepository
 import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnMealClicked
 import com.jgbravo.nutriwise.ui.mealPlanDetail.models.Meal

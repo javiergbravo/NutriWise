@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jgbravo.data.repository.models.PlanState
+import com.jgbravo.nutriwise.data.repository.models.PlanState
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.dashboard.components.MealPlanItem
 import com.jgbravo.nutriwise.ui.dashboard.models.MealPlan
