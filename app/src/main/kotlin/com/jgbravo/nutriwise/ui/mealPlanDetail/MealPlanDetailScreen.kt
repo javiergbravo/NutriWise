@@ -17,10 +17,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jgbravo.nutriwise.domain.usecases.models.Meal
 import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnMealClicked
 import com.jgbravo.nutriwise.ui.mealPlanDetail.components.MealItem
-import com.jgbravo.nutriwise.ui.mealPlanDetail.models.Meal
 import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.AFTERNOON_SNACK
 import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.BREAKFAST
 import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.DINNER

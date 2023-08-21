@@ -2,11 +2,15 @@ package com.jgbravo.nutriwise.ui.mealPlanDetail
 
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.nutriwise.base.presentation.BaseViewModel
+import com.jgbravo.nutriwise.common.app.enums.MealType.AFTERNOON_SNACK
+import com.jgbravo.nutriwise.common.app.enums.MealType.BREAKFAST
+import com.jgbravo.nutriwise.common.app.enums.MealType.DINNER
+import com.jgbravo.nutriwise.common.app.enums.MealType.LUNCH
+import com.jgbravo.nutriwise.common.app.enums.MealType.MORNING_SNACK
 import com.jgbravo.nutriwise.data.repository.MealRepository
+import com.jgbravo.nutriwise.domain.usecases.models.Meal
 import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnMealClicked
-import com.jgbravo.nutriwise.ui.mealPlanDetail.models.Meal
-import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -42,31 +46,31 @@ class MealPlanDetailViewModel(
     private fun getMealsFromRepository(): Flow<List<Meal>> = flowOf(
         listOf(
             Meal(
-                mealType = MealType.BREAKFAST,
+                mealType = BREAKFAST,
                 carbs = 20,
                 protein = 10,
                 fat = 5
             ),
             Meal(
-                mealType = MealType.MORNING_SNACK,
+                mealType = MORNING_SNACK,
                 carbs = 20,
                 protein = 10,
                 fat = 5
             ),
             Meal(
-                mealType = MealType.LUNCH,
+                mealType = LUNCH,
                 carbs = 20,
                 protein = 10,
                 fat = 5
             ),
             Meal(
-                mealType = MealType.AFTERNOON_SNACK,
+                mealType = AFTERNOON_SNACK,
                 carbs = 20,
                 protein = 10,
                 fat = 5
             ),
             Meal(
-                mealType = MealType.DINNER,
+                mealType = DINNER,
                 carbs = 20,
                 protein = 10,
                 fat = 5

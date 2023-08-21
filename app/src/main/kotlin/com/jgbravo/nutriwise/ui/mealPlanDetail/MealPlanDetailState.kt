@@ -1,7 +1,7 @@
 package com.jgbravo.nutriwise.ui.mealPlanDetail
 
 import com.jgbravo.nutriwise.base.presentation.BaseState
-import com.jgbravo.nutriwise.ui.mealPlanDetail.models.Meal
+import com.jgbravo.nutriwise.domain.usecases.models.Meal
 
 data class MealPlanDetailState(
     val meals: List<Meal> = emptyList(),

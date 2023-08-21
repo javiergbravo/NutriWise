@@ -26,9 +26,10 @@ import com.jgbravo.nutriwise.app.theme.GreenActive
 import com.jgbravo.nutriwise.app.theme.GreyInactive
 import com.jgbravo.nutriwise.app.theme.LightBlueGrey
 import com.jgbravo.nutriwise.app.theme.RedStop
+import com.jgbravo.nutriwise.common.utils.DateManager
 import com.jgbravo.nutriwise.data.repository.models.PlanState
-import com.jgbravo.nutriwise.ui.dashboard.models.MealPlan
-import com.jgbravo.nutriwise.utils.DateManager
+import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
+import com.jgbravo.nutriwise.domain.usecases.models.PlanState
 import java.time.LocalDateTime
 import java.util.Locale
 

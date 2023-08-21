@@ -25,7 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jgbravo.nutriwise.R
 import com.jgbravo.nutriwise.R.drawable
-import com.jgbravo.nutriwise.ui.mealPlanDetail.models.Meal
+import com.jgbravo.nutriwise.app.utils.getNameRes
+import com.jgbravo.nutriwise.domain.usecases.models.Meal
 import com.jgbravo.nutriwise.ui.mealPlanDetail.models.MealType.BREAKFAST
 import com.jgbravo.nutriwise.ui.mealPlanDetail.models.getNameRes
 
