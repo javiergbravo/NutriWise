@@ -8,7 +8,7 @@ data class MealPlan(
     val id: String,
     val person: String,
     var startDate: LocalDateTime,
-    var description: String,
+    var goal: String,
     var kcal: Int,
     var meals: List<MealEntity>,
     val state: PlanState

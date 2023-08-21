@@ -1,5 +1,6 @@
 package com.jgbravo.nutriwise.ui.dashboard
 
+import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,8 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jgbravo.data.repository.models.PlanState
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnErrorScreen
+import com.jgbravo.nutriwise.ui.dashboard.models.MealPlan
+import java.time.LocalDateTime
 
 @Composable
 fun DashboardScreen(
@@ -59,4 +64,26 @@ fun DashboardScreen(
             // TODO: Add meal plan items
         }
     }
+}
+
+@Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
+@Preview(name = "Light Mode", uiMode = Configuration.UI_MODE_NIGHT_NO, showSystemUi = true)
+@Composable
+fun DashboardScreenPreview() {
+    DashboardScreen(
+        state = DashboardState(
+            plans = listOf(
+                MealPlan(
+                    id = "1",
+                    person = "John Doe",
+                    startDate = LocalDateTime.now(),
+                    goal = "This is a description",
+                    kcal = 2600,
+                    meals = emptyList(),
+                    state = PlanState.ACTIVE
+                )
+            )
+        ),
+        onEvent = {}
+    )
 }

@@ -26,3 +26,7 @@ val DarkGrey = Color(0xFF282C31)
 val LightBlue = Color(0xFFA8A5BB)
 val LightBlueGrey = Color(0xFFF6F4F4)
 val TextBlack = Color(0xFF111111)
+
+val GreenActive = Color(0xFF00A67E)
+val RedStop = Color(0xFFC4091E)
+val GreyInactive = Color(0xFF7C8286)
