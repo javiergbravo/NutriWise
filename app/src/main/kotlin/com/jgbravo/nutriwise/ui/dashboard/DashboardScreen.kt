@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jgbravo.data.repository.models.PlanState
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnErrorScreen
+import com.jgbravo.nutriwise.ui.dashboard.components.MealPlanItem
 import com.jgbravo.nutriwise.ui.dashboard.models.MealPlan
 import java.time.LocalDateTime
 
@@ -61,7 +62,13 @@ fun DashboardScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // TODO: Add meal plan items
+            items(state.plans.size) { index ->
+                val mealPlan = state.plans[index]
+                MealPlanItem(
+                    mealPlan = mealPlan,
+                    onMealPlanClick = { onEvent(DashboardEvent.OnMealPlanClicked(mealPlan)) }
+                )
+            }
         }
     }
 }
@@ -77,10 +84,28 @@ fun DashboardScreenPreview() {
                     id = "1",
                     person = "John Doe",
                     startDate = LocalDateTime.now(),
-                    goal = "This is a description",
+                    goal = "Pérdida de grasa",
                     kcal = 2600,
                     meals = emptyList(),
                     state = PlanState.ACTIVE
+                ),
+                MealPlan(
+                    id = "2",
+                    person = "John Doe",
+                    startDate = LocalDateTime.now().minusMonths(3),
+                    goal = "Volumen",
+                    kcal = 3000,
+                    meals = emptyList(),
+                    state = PlanState.STOPPED
+                ),
+                MealPlan(
+                    id = "3",
+                    person = "Pérdida de grasa",
+                    startDate = LocalDateTime.now().minusMonths(6),
+                    goal = "This is a description",
+                    kcal = 2300,
+                    meals = emptyList(),
+                    state = PlanState.END
                 )
             )
         ),
