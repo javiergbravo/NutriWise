@@ -12,8 +12,12 @@ class MealRepositoryImpl(
     private val realm: Realm
 ) : MealRepository {
 
-    override fun fetchMealPlan(): Flow<MealPlanEntity> {
-        return realm.query<MealPlanEntity>().asFlow().map { it.list.first() }
+    override fun fetchAllMealPlans(): Flow<List<MealPlanEntity>> {
+        return realm.query<MealPlanEntity>().asFlow().map { it.list }
+    }
+
+    override fun fetchMealPlan(id: String): Flow<MealPlanEntity> {
+        return realm.query<MealPlanEntity>(query = "_id == $0", id).asFlow().map { it.list.first() }
     }
 
     override suspend fun insertMealPlan(mealPlan: MealPlanEntity) {

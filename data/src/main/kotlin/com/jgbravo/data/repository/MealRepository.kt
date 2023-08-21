@@ -6,7 +6,8 @@ import org.mongodb.kbson.ObjectId
 
 interface MealRepository {
 
-    fun fetchMealPlan(): Flow<MealPlanEntity>
+    fun fetchAllMealPlans(): Flow<List<MealPlanEntity>>
+    fun fetchMealPlan(id: String): Flow<MealPlanEntity>
     suspend fun insertMealPlan(mealPlan: MealPlanEntity)
     suspend fun updateMealPlan(mealPlan: MealPlanEntity)
     suspend fun deleteMealPlan(id: ObjectId)
