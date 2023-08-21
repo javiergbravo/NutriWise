@@ -1,6 +1,5 @@
-package com.jgbravo.nutriwise.data.repository.models
+package com.jgbravo.nutriwise.data.db.models
 
-import com.jgbravo.nutriwise.data.repository.models.PlanState.ACTIVE
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmInstant
 import io.realm.kotlin.types.RealmList
@@ -9,29 +8,23 @@ import io.realm.kotlin.types.annotations.Index
 import io.realm.kotlin.types.annotations.PrimaryKey
 import org.mongodb.kbson.ObjectId
 
-class MealPlanEntity : RealmObject {
+internal class MealPlanEntity : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId.invoke()
-    var person: String = ""
+    var person: String? = null
     var startDate: String? = null //LocalDateTime = DateTimeUtil.now()
-    var description: String? = null
-    var kcal: Int = 0
+    var goal: String? = null
+    var kcal: Int? = null
     var meals: RealmList<MealEntity> = realmListOf()
-    var state: String = ACTIVE.value
+    var state: String = "active"
 
     @Index
     var timestamp: RealmInstant = RealmInstant.now()
 }
 
-class MealEntity : RealmObject {
-    var type: String = ""
-    var carbs: Int = 0
-    var protein: Int = 0
-    var fat: Int = 0
-}
-
-enum class PlanState(val value: String) {
-    ACTIVE("active"),
-    STOPPED("stopped"),
-    END("end")
+internal class MealEntity : RealmObject {
+    var type: String? = null
+    var carbs: Int? = null
+    var protein: Int? = null
+    var fat: Int? = null
 }

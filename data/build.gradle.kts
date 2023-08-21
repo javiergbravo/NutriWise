@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.jgbravo.data"
+    namespace = "com.jgbravo.nutriwise.data"
     compileSdk = 34
 
     defaultConfig {
@@ -30,10 +30,11 @@ android {
 
 dependencies {
 
+    implementation(project(":common"))
+
     implementation(libs.koin)
     implementation(libs.coroutines)
     implementation(libs.realm)
-//    implementation(libs.coroutines.android)
     implementation(libs.kotlin.datetime)
 
     testImplementation(libs.junit)

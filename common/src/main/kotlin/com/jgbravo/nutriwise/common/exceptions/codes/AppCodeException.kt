@@ -1,4 +1,6 @@
-package com.jgbravo.nutriwise.base.exceptions
+package com.jgbravo.nutriwise.common.exceptions.codes
+
+import com.jgbravo.nutriwise.common.exceptions.codes.AppCodeException.UNKNOWN_EXCEPTION
 
 enum class AppCodeException(val value: Int) {
     UNKNOWN_EXCEPTION(0),
@@ -19,5 +21,5 @@ enum class AppCodeException(val value: Int) {
 }
 
 fun Int.getAppCodeException(): AppCodeException {
-    return AppCodeException.values().firstOrNull { it.value == this } ?: AppCodeException.UNKNOWN_EXCEPTION
+    return AppCodeException.values().firstOrNull { it.value == this } ?: UNKNOWN_EXCEPTION
 }

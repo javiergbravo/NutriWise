@@ -1,4 +1,4 @@
-package com.jgbravo.nutriwise.utils
+package com.jgbravo.nutriwise.common.utils
 
 import java.time.LocalDateTime
 
