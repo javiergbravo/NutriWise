@@ -16,4 +16,10 @@ sealed class Destination(protected val route: String, vararg params: String) {
 
     // Screens
     object DashboardDestination : NoArgumentDestination("dashboard")
+
+    object MealPlanDetailDestination : Destination("mealPlanDetail", "mealPlanId") {
+        const val MEAL_PLAN_ID = "mealPlanId"
+
+        operator fun invoke(mealPlanId: String): String = route.replace("{$MEAL_PLAN_ID}", mealPlanId)
+    }
 }

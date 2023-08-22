@@ -20,14 +20,14 @@ class DashboardViewModel(
 ) : BaseViewModel<DashboardState, DashboardEvent>() {
 
     override val mutableState = MutableStateFlow(DashboardState())
-    override val state = combine(mutableState, getAllMealPlans.invoke()) { state, mealPlanResource ->
-        when (mealPlanResource) {
-            is Error -> state.copy(error = mealPlanResource.exception.message)
+    override val state = combine(mutableState, getAllMealPlans.invoke()) { state, mealPlansResource ->
+        when (mealPlansResource) {
+            is Error -> state.copy(error = mealPlansResource.exception.message)
             is Success -> {
-                if (mealPlanResource.data == null) {
+                if (mealPlansResource.data == null) {
                     state.copy(error = "No data")
                 } else {
-                    state.copy(plans = mealPlanResource.data as List<MealPlan>)
+                    state.copy(plans = mealPlansResource.data as List<MealPlan>)
                 }
             }
         }

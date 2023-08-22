@@ -29,7 +29,7 @@ import com.jgbravo.nutriwise.ui.mealPlanDetail.components.MealItem
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DashboardScreen(
+fun MealPlanDetailScreen(
     state: MealPlanDetailState,
     onEvent: (MealPlanDetailEvent) -> Unit
 ) {
@@ -72,7 +72,7 @@ fun DashboardScreen(
 @Preview(name = "Light Mode", uiMode = Configuration.UI_MODE_NIGHT_NO, showSystemUi = true)
 @Composable
 fun DashboardScreenPreview() {
-    DashboardScreen(
+    MealPlanDetailScreen(
         state = MealPlanDetailState(
             meals = listOf(
                 Meal(
