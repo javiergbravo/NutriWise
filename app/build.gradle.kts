@@ -50,7 +50,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":domain"))
-    implementation(project(":data"))
+    implementation(project(":data:di"))
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)

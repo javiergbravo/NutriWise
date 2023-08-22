@@ -5,6 +5,5 @@ import com.jgbravo.nutriwise.domain.di.domainModule
 
 val appModule = listOf(
     uiModule,
-    domainModule,
-    dataModule
-)
+    domainModule
+).plus(dataModule)

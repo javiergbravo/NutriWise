@@ -1,19 +1,17 @@
 package com.jgbravo.nutriwise.domain.usecases.mappers
 
 import com.jgbravo.nutriwise.common.utils.EMPTY_STRING
-import com.jgbravo.nutriwise.data.models.MealDataModel
-import com.jgbravo.nutriwise.data.models.MealPlanDataModel
 import com.jgbravo.nutriwise.domain.usecases.models.Meal
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
 
-internal fun MealDataModel.mapToDomain() = Meal(
+internal fun com.jgbravo.nutriwise.data.api.models.MealDataModel.mapToDomain() = Meal(
     mealType = type,
     carbs = carbs,
     protein = protein,
     fat = fat
 )
 
-internal fun MealPlanDataModel.mapToDomain() = MealPlan(
+internal fun com.jgbravo.nutriwise.data.api.models.MealPlanDataModel.mapToDomain() = MealPlan(
     id = id,
     person = person,
     startDate = startDate,
