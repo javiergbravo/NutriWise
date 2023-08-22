@@ -2,7 +2,10 @@ package com.jgbravo.nutriwise.ui.dashboard
 
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.nutriwise.base.presentation.BaseViewModel
-import com.jgbravo.nutriwise.data.repository.MealRepository
+import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Error
+import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Success
+import com.jgbravo.nutriwise.domain.usecases.GetAllMealPlans
+import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.CreateMealPlan
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnMealPlanClicked
@@ -13,18 +16,21 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
 class DashboardViewModel(
-    private val mealRepository: MealRepository
+    private val getAllMealPlans: GetAllMealPlans
 ) : BaseViewModel<DashboardState, DashboardEvent>() {
 
     override val mutableState = MutableStateFlow(DashboardState())
-    override val state = combine(mutableState, mealRepository.fetchAllMealPlans()) { state, mealPlans ->
-        /*if (state.plans != mealPlans) {
-            state.copy(
-                plans = mealPlans
-            )
-        } else {
-            state
-        }*/
+    override val state = combine(mutableState, getAllMealPlans.invoke()) { state, mealPlanResource ->
+        when (mealPlanResource) {
+            is Error -> state.copy(error = mealPlanResource.exception.message)
+            is Success -> {
+                if (mealPlanResource.data == null) {
+                    state.copy(error = "No data")
+                } else {
+                    state.copy(plans = mealPlanResource.data as List<MealPlan>)
+                }
+            }
+        }
         state
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), DashboardState())
 

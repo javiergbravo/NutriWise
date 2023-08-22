@@ -26,11 +26,11 @@ import com.jgbravo.nutriwise.app.theme.GreenActive
 import com.jgbravo.nutriwise.app.theme.GreyInactive
 import com.jgbravo.nutriwise.app.theme.LightBlueGrey
 import com.jgbravo.nutriwise.app.theme.RedStop
-import com.jgbravo.nutriwise.common.utils.DateManager
-import com.jgbravo.nutriwise.data.repository.models.PlanState
+import com.jgbravo.nutriwise.common.app.models.PlanState
+import com.jgbravo.nutriwise.common.utils.DatePatterns.SPANISH_DATE_PATTERN
+import com.jgbravo.nutriwise.common.utils.DateTimeUtil
+import com.jgbravo.nutriwise.common.utils.DateTimeUtil.formatDate
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
-import com.jgbravo.nutriwise.domain.usecases.models.PlanState
-import java.time.LocalDateTime
 import java.util.Locale
 
 @Composable
@@ -64,7 +64,7 @@ fun MealPlanItem(
             )
             Spacer(modifier = Modifier.padding(4.dp))
             Text(
-                text = DateManager.formatDefault(mealPlan.startDate),
+                text = mealPlan.startDate.formatDate(SPANISH_DATE_PATTERN),
                 fontSize = 14.sp
             )
         }
@@ -113,7 +113,7 @@ fun MealPlanItemPreview() {
         mealPlan = MealPlan(
             id = "1",
             person = "John Doe",
-            startDate = LocalDateTime.now(),
+            startDate = DateTimeUtil.now().date,
             goal = "Pérdida de grasa",
             kcal = 2600,
             meals = emptyList(),

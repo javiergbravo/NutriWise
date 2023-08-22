@@ -12,7 +12,7 @@ internal class MealPlanEntity : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId.invoke()
     var person: String? = null
-    var startDate: String? = null //LocalDateTime = DateTimeUtil.now()
+    var startDate: String? = null
     var goal: String? = null
     var kcal: Int? = null
     var meals: RealmList<MealEntity> = realmListOf()

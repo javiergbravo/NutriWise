@@ -2,11 +2,11 @@ package com.jgbravo.nutriwise.ui.mealPlanDetail
 
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.nutriwise.base.presentation.BaseViewModel
-import com.jgbravo.nutriwise.common.app.enums.MealType.AFTERNOON_SNACK
-import com.jgbravo.nutriwise.common.app.enums.MealType.BREAKFAST
-import com.jgbravo.nutriwise.common.app.enums.MealType.DINNER
-import com.jgbravo.nutriwise.common.app.enums.MealType.LUNCH
-import com.jgbravo.nutriwise.common.app.enums.MealType.MORNING_SNACK
+import com.jgbravo.nutriwise.common.app.models.MealType.AFTERNOON_SNACK
+import com.jgbravo.nutriwise.common.app.models.MealType.BREAKFAST
+import com.jgbravo.nutriwise.common.app.models.MealType.DINNER
+import com.jgbravo.nutriwise.common.app.models.MealType.LUNCH
+import com.jgbravo.nutriwise.common.app.models.MealType.MORNING_SNACK
 import com.jgbravo.nutriwise.data.repository.MealRepository
 import com.jgbravo.nutriwise.domain.usecases.models.Meal
 import com.jgbravo.nutriwise.ui.mealPlanDetail.MealPlanDetailEvent.OnErrorScreen

@@ -20,11 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jgbravo.nutriwise.common.app.models.PlanState
+import com.jgbravo.nutriwise.common.utils.DateTimeUtil
+import com.jgbravo.nutriwise.common.utils.DateTimeUtil.minusMonths
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
-import com.jgbravo.nutriwise.domain.usecases.models.PlanState
 import com.jgbravo.nutriwise.ui.dashboard.DashboardEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.dashboard.components.MealPlanItem
-import java.time.LocalDateTime
 
 @Composable
 fun DashboardScreen(
@@ -77,13 +78,14 @@ fun DashboardScreen(
 @Preview(name = "Light Mode", uiMode = Configuration.UI_MODE_NIGHT_NO, showSystemUi = true)
 @Composable
 fun DashboardScreenPreview() {
+    val today = DateTimeUtil.now().date
     DashboardScreen(
         state = DashboardState(
             plans = listOf(
                 MealPlan(
                     id = "1",
                     person = "John Doe",
-                    startDate = LocalDateTime.now(),
+                    startDate = today,
                     goal = "Pérdida de grasa",
                     kcal = 2600,
                     meals = emptyList(),
@@ -92,7 +94,7 @@ fun DashboardScreenPreview() {
                 MealPlan(
                     id = "2",
                     person = "John Doe",
-                    startDate = LocalDateTime.now().minusMonths(3),
+                    startDate = today.minusMonths(3),
                     goal = "Volumen",
                     kcal = 3000,
                     meals = emptyList(),
@@ -101,7 +103,7 @@ fun DashboardScreenPreview() {
                 MealPlan(
                     id = "3",
                     person = "Pérdida de grasa",
-                    startDate = LocalDateTime.now().minusMonths(6),
+                    startDate = today.minusMonths(6),
                     goal = "This is a description",
                     kcal = 2300,
                     meals = emptyList(),

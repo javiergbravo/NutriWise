@@ -50,6 +50,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":domain"))
+    implementation(project(":data"))
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
@@ -62,6 +63,7 @@ dependencies {
     implementation(libs.ui.navigation)
     implementation(libs.koin)
     implementation(libs.koin.compose)
+    implementation(libs.kotlin.datetime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
