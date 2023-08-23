@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.jgbravo.nutriwise.app.navigation.NutriWiseNavigator
-import com.jgbravo.nutriwise.app.theme.NutriWiseTheme
+import com.jgbravo.nutriwise.ui.api.theme.NutriWiseTheme
+import com.jgbravo.nutriwise.ui.navigation.NutriWiseNavigator
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -16,6 +16,11 @@
             <option value="$PROJECT_DIR$/data/di" />
             <option value="$PROJECT_DIR$/data/impl" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/api" />
+            <option value="$PROJECT_DIR$/ui/di" />
+            <option value="$PROJECT_DIR$/ui/feature" />
+            <option value="$PROJECT_DIR$/ui/navigation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

@@ -1,18 +1,14 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
 }
 
 android {
-    namespace = "com.jgbravo.nutriwise"
+    namespace = "com.jgbravo.nutriwise.ui.navigation"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.jgbravo.nutriwise"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -39,21 +35,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
 
-    implementation(project(":common"))
-    implementation(project(":ui:navigation"))
-    implementation(project(":ui:api"))
-    implementation(project(":ui:di"))
-    implementation(project(":domain")) // TODO: Remove this dependency
-    implementation(project(":data:di"))
+    implementation(project(":ui:feature"))
+    implementation(project(":domain")) // TODO: remove
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
