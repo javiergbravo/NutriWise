@@ -50,6 +50,7 @@ fun NavGraphBuilder.registerFeature(
 ) {
     featureApi.registerGraph(
         navGraphBuilder = this,
-        navController = navController
+        navController = navController,
+        modifier = modifier
     )
 }

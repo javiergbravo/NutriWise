@@ -3,6 +3,7 @@ package com.jgbravo.nutriwise.ui.navigation.features.mealPlanDetail
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.OnMealClicked
@@ -18,7 +19,8 @@ class MealPlanDetailFeatImpl : MealPlanDetailFeatApi {
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
-        navController: NavHostController
+        navController: NavHostController,
+        modifier: Modifier
     ) {
         navGraphBuilder.destinationComposable(
             destination = destination
