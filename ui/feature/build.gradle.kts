@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.ui.material3)
+    implementation(libs.ui.icon)
     implementation(libs.ui.navigation)
     implementation(libs.koin)
     implementation(libs.koin.compose)

@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.jgbravo.nutriwise.ui.navigation.base.DestinationNavHost
 import com.jgbravo.nutriwise.ui.navigation.base.registerFeature
-import com.jgbravo.nutriwise.ui.navigation.features.Destination.DashboardDestination
+import com.jgbravo.nutriwise.ui.navigation.features.AppDestination.DashboardDestination
 
 
 @Composable
@@ -22,6 +22,12 @@ fun NutriWiseNavigator(
 
         registerFeature(
             featureApi = appNavigator.dashboardNav,
+            navController = navController,
+            modifier = modifier
+        )
+
+        registerFeature(
+            featureApi = appNavigator.createMealPlanNav,
             navController = navController,
             modifier = modifier
         )

@@ -1,6 +1,7 @@
 package com.jgbravo.nutriwise.data.impl.repositories
 
 import com.jgbravo.nutriwise.data.api.models.MealPlanDataModel
+import com.jgbravo.nutriwise.data.api.models.NewMealPlanDataModel
 import com.jgbravo.nutriwise.data.api.repositories.MealRepository
 import com.jgbravo.nutriwise.data.impl.db.MealDao
 import com.jgbravo.nutriwise.data.impl.mapers.mapToData
@@ -21,7 +22,7 @@ class MealRepositoryImpl(
         .map { it.mapToData() }
         .flowOn(Dispatchers.IO)
 
-    override suspend fun insertMealPlan(mealPlan: MealPlanDataModel) = dao.insertMealPlan(mealPlan.mapToEntity())
+    override suspend fun insertMealPlan(mealPlan: NewMealPlanDataModel) = dao.insertMealPlan(mealPlan.mapToEntity())
 
     override suspend fun updateMealPlan(mealPlan: MealPlanDataModel) = dao.updateMealPlan(mealPlan.mapToEntity())
 

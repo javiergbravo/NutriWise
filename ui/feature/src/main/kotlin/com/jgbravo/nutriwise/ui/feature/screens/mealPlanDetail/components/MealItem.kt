@@ -109,6 +109,7 @@ fun MealItem(
 fun MealItemPreview() {
     MealItem(
         Meal(
+            id = "1",
             mealType = BREAKFAST,
             carbs = 63,
             protein = 33,

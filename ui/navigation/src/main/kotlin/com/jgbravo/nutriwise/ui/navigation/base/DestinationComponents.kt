@@ -10,12 +10,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.jgbravo.nutriwise.ui.navigation.features.Destination
+import com.jgbravo.nutriwise.ui.navigation.features.AppDestination
 
 @Composable
 fun DestinationNavHost(
     navController: NavHostController,
-    startDestination: Destination,
+    startDestination: AppDestination,
     modifier: Modifier = Modifier,
     route: String? = null,
     builder: NavGraphBuilder.() -> Unit
@@ -30,7 +30,7 @@ fun DestinationNavHost(
 }
 
 fun NavGraphBuilder.destinationComposable(
-    destination: Destination,
+    destination: AppDestination,
     arguments: List<NamedNavArgument> = emptyList(),
     deepLinks: List<NavDeepLink> = emptyList(),
     content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit

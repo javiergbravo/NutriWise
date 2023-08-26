@@ -76,30 +76,35 @@ fun DashboardScreenPreview() {
         state = MealPlanDetailState(
             meals = listOf(
                 Meal(
+                    id = "1",
                     mealType = BREAKFAST,
                     carbs = 20,
                     protein = 10,
                     fat = 5
                 ),
                 Meal(
+                    id = "2",
                     mealType = MORNING_SNACK,
                     carbs = 20,
                     protein = 10,
                     fat = 5
                 ),
                 Meal(
+                    id = "3",
                     mealType = LUNCH,
                     carbs = 20,
                     protein = 10,
                     fat = 5
                 ),
                 Meal(
+                    id = "4",
                     mealType = AFTERNOON_SNACK,
                     carbs = 20,
                     protein = 10,
                     fat = 5
                 ),
                 Meal(
+                    id = "5",
                     mealType = DINNER,
                     carbs = 20,
                     protein = 10,

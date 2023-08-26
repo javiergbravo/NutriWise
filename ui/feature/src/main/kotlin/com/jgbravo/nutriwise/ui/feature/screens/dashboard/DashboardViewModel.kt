@@ -1,17 +1,21 @@
 package com.jgbravo.nutriwise.ui.feature.screens.dashboard
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Error
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Success
 import com.jgbravo.nutriwise.domain.usecases.GetAllMealPlans
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
+import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
+import com.jgbravo.nutriwise.ui.feature.models.UiText
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.CreateMealPlan
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnMealPlanClicked
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
@@ -22,24 +26,37 @@ class DashboardViewModel(
     override val mutableState = MutableStateFlow(DashboardState())
     override val state = combine(mutableState, getAllMealPlans.invoke()) { state, mealPlansResource ->
         when (mealPlansResource) {
-            is Error -> state.copy(error = mealPlansResource.exception.message)
-            is Success -> {
+            is Error -> mutableState.update { lastState ->
+                lastState.copy(
+                    error = mealPlansResource.exception.message?.let {
+                        UiText.DynamicString(it)
+                    } ?: UiText.StringResource(R.string.generic_error)
+                )
+            }
+            is Success -> mutableState.update { lastState ->
                 if (mealPlansResource.data == null) {
-                    state.copy(error = "No data")
+                    lastState.copy(error = UiText.StringResource(R.string.generic_error))
                 } else {
-                    state.copy(plans = mealPlansResource.data as List<MealPlan>)
+                    lastState.copy(plans = mealPlansResource.data as List<MealPlan>)
                 }
             }
         }
         state
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), DashboardState())
+    }.onEach {
+        Log.d("DashboardViewModel", "[DashboardState] state=$it")
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = DashboardState()
+    )
 
     override fun onEvent(event: DashboardEvent) {
+        Log.d("DashboardViewModel", "[DashboardEvent] onEvent=$event")
         when (event) {
-            is CreateMealPlan -> TODO("Not yet implemented")
-            OnErrorScreen -> mutableState.update {
-                it.copy(error = null)
+            OnErrorScreen -> mutableState.update { lastState ->
+                lastState.copy(error = null)
             }
+            is CreateMealPlan,
             is OnMealPlanClicked -> Unit
         }
     }

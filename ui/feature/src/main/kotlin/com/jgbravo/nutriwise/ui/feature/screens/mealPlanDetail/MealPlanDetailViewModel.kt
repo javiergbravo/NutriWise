@@ -1,5 +1,6 @@
 package com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Error
@@ -12,6 +13,7 @@ import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEve
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
@@ -35,12 +37,19 @@ class MealPlanDetailViewModel(
             }
         }
         state
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), MealPlanDetailState())
+    }.onEach {
+        Log.d("MealPlanDetailViewModel", "[MealPlanDetailState] state=$it")
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = MealPlanDetailState()
+    )
 
     override fun onEvent(event: MealPlanDetailEvent) {
+        Log.d("MealPlanDetailViewModel", "[MealPlanDetailEvent] onEvent=$event")
         when (event) {
-            OnErrorScreen -> mutableState.update {
-                it.copy(error = null)
+            OnErrorScreen -> mutableState.update { lastState ->
+                lastState.copy(error = null)
             }
             is OnMealClicked -> Unit
         }

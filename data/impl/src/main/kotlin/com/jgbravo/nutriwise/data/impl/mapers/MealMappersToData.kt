@@ -13,6 +13,7 @@ import com.jgbravo.nutriwise.data.impl.db.models.MealEntity
 import com.jgbravo.nutriwise.data.impl.db.models.MealPlanEntity
 
 internal fun MealEntity.mapToData() = MealDataModel(
+    id = ::_id.getOrThrow().toString(),
     type = MealType.values().find {
         it.value == ::type.getOrThrow()
     } ?: throw MappingException("type", INVALID_ENUM),

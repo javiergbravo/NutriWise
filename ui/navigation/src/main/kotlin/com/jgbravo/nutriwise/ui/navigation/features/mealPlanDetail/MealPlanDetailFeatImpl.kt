@@ -10,12 +10,11 @@ import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEve
 import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailScreen
 import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailViewModel
 import com.jgbravo.nutriwise.ui.navigation.base.destinationComposable
-import com.jgbravo.nutriwise.ui.navigation.features.Destination.MealPlanDetailDestination
+import com.jgbravo.nutriwise.ui.navigation.features.AppDestination
+import com.jgbravo.nutriwise.ui.navigation.features.AppDestination.MealPlanDetailDestination
 import org.koin.androidx.compose.koinViewModel
 
 class MealPlanDetailFeatImpl : MealPlanDetailFeatApi {
-
-    override val destination = MealPlanDetailDestination
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
@@ -23,16 +22,16 @@ class MealPlanDetailFeatImpl : MealPlanDetailFeatApi {
         modifier: Modifier
     ) {
         navGraphBuilder.destinationComposable(
-            destination = destination
+            destination = MealPlanDetailDestination
         ) { backStackEntry ->
 
             val viewModel = koinViewModel<MealPlanDetailViewModel>()
             val state by viewModel.state.collectAsState()
 
-            val mealPlanIdResult = backStackEntry.arguments?.getString(MealPlanDetailDestination.MEAL_PLAN_ID)
+            val mealPlanIdResult = backStackEntry.arguments?.getString(AppDestination.MEAL_PLAN_ID)
 
             LaunchedEffect(mealPlanIdResult) {
-                backStackEntry.savedStateHandle[MealPlanDetailDestination.MEAL_PLAN_ID] = mealPlanIdResult
+                backStackEntry.savedStateHandle[AppDestination.MEAL_PLAN_ID] = mealPlanIdResult
             }
 
             MealPlanDetailScreen(

@@ -23,6 +23,7 @@ class MealPlanEntity : RealmObject {
 }
 
 class MealEntity : RealmObject {
+    var _id: ObjectId = ObjectId.invoke()
     var type: String? = null
     var carbs: Int? = null
     var protein: Int? = null

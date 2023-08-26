@@ -1,15 +1,18 @@
 package com.jgbravo.nutriwise.data.impl.mapers
 
+import com.jgbravo.nutriwise.common.app.models.PlanState
 import com.jgbravo.nutriwise.common.utils.DatePatterns
 import com.jgbravo.nutriwise.common.utils.DateTimeUtil.formatDate
 import com.jgbravo.nutriwise.data.api.models.MealDataModel
 import com.jgbravo.nutriwise.data.api.models.MealPlanDataModel
+import com.jgbravo.nutriwise.data.api.models.NewMealPlanDataModel
 import com.jgbravo.nutriwise.data.impl.db.models.MealEntity
 import com.jgbravo.nutriwise.data.impl.db.models.MealPlanEntity
 import io.realm.kotlin.ext.toRealmList
 import org.mongodb.kbson.ObjectId
 
 internal fun MealDataModel.mapToEntity() = MealEntity().apply {
+    _id = ObjectId(this@mapToEntity.id)
     type = this@mapToEntity.type.value
     carbs = this@mapToEntity.carbs
     protein = this@mapToEntity.protein
@@ -24,4 +27,14 @@ internal fun MealPlanDataModel.mapToEntity() = MealPlanEntity().apply {
     kcal = this@mapToEntity.kcal
     meals = this@mapToEntity.meals.map { meal -> meal.mapToEntity() }.toRealmList()
     state = this@mapToEntity.state.name
+}
+
+internal fun NewMealPlanDataModel.mapToEntity() = MealPlanEntity().apply {
+    _id = ObjectId.invoke()
+    person = this@mapToEntity.person
+    startDate = this@mapToEntity.startDate // TODO: change to LocalDate
+    goal = this@mapToEntity.goal
+    kcal = this@mapToEntity.kcal
+//    meals = this@mapToEntity.meals.map { meal -> meal.mapToEntity() }.toRealmList()
+    state = PlanState.ACTIVE.name
 }
