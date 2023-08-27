@@ -20,4 +20,6 @@
     <string name="error_field_is_not_positive">Filed must be positive number</string>
     <string name="error_ckeck_invalid_fields_before_continue">Please, check invalid fields before continue.</string>
     <string name="generic_error">Something went wrong, please try again later</string>
+    <string name="your_meal_plan_has_been_created_successfully">Your meal plan has been created successfully!</string>
+    <string name="button_continue">Continue</string>
 </resources>

@@ -5,8 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.ClickBack
-import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.CreateMealPlanSuccess
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanScreen
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanViewModel
 import com.jgbravo.nutriwise.ui.navigation.base.destinationComposable
@@ -31,8 +30,9 @@ class CreateMealPlanFeatImpl : CreateMealPlanFeatApi {
                 state = state,
                 onEvent = { event ->
                     when (event) {
-                        ClickBack,
-                        CreateMealPlanSuccess -> navController.popBackStack()
+                        CreateMealPlanEvent.ClickBack -> {
+                            navController.popBackStack()
+                        }
                         else -> viewModel.onEvent(event)
                     }
                 }

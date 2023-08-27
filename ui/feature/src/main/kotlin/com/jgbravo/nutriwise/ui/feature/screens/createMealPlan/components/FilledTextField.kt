@@ -1,12 +1,9 @@
 package com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons.Filled
-import androidx.compose.material.icons.filled.Error
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,13 +20,13 @@ fun FilledTextField(
     isSingleLine: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
-    TextField(
-        modifier = modifier,
-        label = { Text(text = label.asString()) },
+    OutlinedTextField(
+        modifier = modifier.fillMaxWidth(),
         value = text,
-        singleLine = isSingleLine,
         onValueChange = onTextChange,
+        label = { Text(text = label.asString()) },
         isError = error != null,
+        singleLine = isSingleLine,
         supportingText = {
             if (error != null) {
                 Text(
@@ -38,10 +35,6 @@ fun FilledTextField(
                     color = RedStop
                 )
             }
-        },
-        trailingIcon = {
-            if (error != null)
-                Icon(Filled.Error, "error icon", tint = MaterialTheme.colorScheme.error)
         },
         keyboardOptions = keyboardOptions
     )

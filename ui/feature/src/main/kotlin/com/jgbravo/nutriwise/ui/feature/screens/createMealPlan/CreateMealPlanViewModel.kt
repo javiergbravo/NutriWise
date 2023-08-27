@@ -8,6 +8,8 @@ import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
 import com.jgbravo.nutriwise.ui.feature.models.UiText
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.ClickCreateMealPlan
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.CreateMealPlanSuccess
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnDismissBottomSheet
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnGoalChanged
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnKcalChanged
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnPersonNameChanged
@@ -66,10 +68,31 @@ class CreateMealPlanViewModel(
             }
             ClickCreateMealPlan -> {
                 if (validateAllFields()) {
+                    mutableState.update { lastState ->
+                        lastState.copy(
+                            error = null
+                        )
+                    }
                     createMealPlan()
                 } else {
-                    mutableState.value = state.value.copy(
-                        error = UiText.StringResource(R.string.error_ckeck_invalid_fields_before_continue)
+                    mutableState.update { lastState ->
+                        lastState.copy(
+                            error = UiText.StringResource(R.string.error_ckeck_invalid_fields_before_continue)
+                        )
+                    }
+                }
+            }
+            CreateMealPlanSuccess -> {
+                mutableState.update { lastState ->
+                    lastState.copy(
+                        isBottomSheetOpened = true
+                    )
+                }
+            }
+            OnDismissBottomSheet -> {
+                mutableState.update { lastState ->
+                    lastState.copy(
+                        isBottomSheetOpened = false
                     )
                 }
             }
@@ -104,7 +127,12 @@ class CreateMealPlanViewModel(
         mutableState.value.startDateError,
         mutableState.value.goalError,
         mutableState.value.kcalError
-    ).all { it == null }
+    ).all { it == null } && listOf(
+        mutableState.value.personName,
+        mutableState.value.startDate,
+        mutableState.value.goal,
+        mutableState.value.kcal
+    ).all { it.isNotEmpty() }
 
     private fun createMealPlan() {
         val newMealPlan = NewMealPlan(
@@ -116,5 +144,6 @@ class CreateMealPlanViewModel(
         viewModelScope.launch {
             createMealPlan.invoke(newMealPlan)
         }
+        onEvent(CreateMealPlanSuccess)
     }
 }

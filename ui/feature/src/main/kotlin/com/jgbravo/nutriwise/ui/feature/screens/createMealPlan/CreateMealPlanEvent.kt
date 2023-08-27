@@ -10,5 +10,6 @@ interface CreateMealPlanEvent : BaseEvent {
     data class OnKcalChanged(val kcal: String) : CreateMealPlanEvent
     object ClickCreateMealPlan : CreateMealPlanEvent
     object CreateMealPlanSuccess : CreateMealPlanEvent
+    object OnDismissBottomSheet : CreateMealPlanEvent
     object ClickBack : CreateMealPlanEvent
 }
