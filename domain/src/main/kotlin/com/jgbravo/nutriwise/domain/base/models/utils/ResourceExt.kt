@@ -7,23 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.transform
 
-inline fun <T : Any, R : Any> Flow<Resource<T>>.mapCatching(
-    nullIsAllowed: Boolean = false,
-    crossinline mapper: suspend (T) -> R
-): Flow<Resource<R>> = this
-    .catch { throwable -> transform { emit(Error(Exception(throwable))) } }
-    .transform { resource ->
-        return@transform when (resource) {
-            is Success -> when {
-                resource.data == null && nullIsAllowed -> emit(Success(null as R?))
-                resource.data == null && !nullIsAllowed -> emit(Error(NullPointerException()))
-                else -> emit(Success(mapper(resource.data as T)))
-            }
-            is Error -> emit(Error(resource.exception))
-        }
-    }
-
-inline fun <T : Any, R : Any> Flow<T?>.mapNullableCatching(
+inline fun <T : Any, R : Any> Flow<T?>.mapNullableAsResourceCatching(
     nullIsAllowed: Boolean = false,
     crossinline mapper: suspend (T) -> R
 ): Flow<Resource<R>> = this
