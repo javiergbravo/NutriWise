@@ -1,4 +1,4 @@
-package com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.components
+package com.jgbravo.nutriwise.ui.feature.components.text
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jgbravo.nutriwise.ui.api.theme.RedStop
 import com.jgbravo.nutriwise.ui.feature.models.UiText
+import com.jgbravo.nutriwise.ui.feature.models.UiText.DynamicString
 
 @Composable
 fun FilledTextField(
@@ -44,9 +45,9 @@ fun FilledTextField(
 @Composable
 fun SimpleFilledTextFieldSamplePreview() {
     FilledTextField(
-        label = UiText.DynamicString("Objetivo"),
+        label = DynamicString("Objetivo"),
         text = "Pérdida de grasa",
         onTextChange = {},
-        error = UiText.DynamicString("Error"),
+        error = DynamicString("Error"),
     )
 }

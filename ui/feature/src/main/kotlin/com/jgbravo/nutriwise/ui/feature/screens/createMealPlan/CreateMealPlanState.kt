@@ -15,5 +15,6 @@ data class CreateMealPlanState(
     val kcalError: UiText? = null,
     val isLoading: Boolean = false,
     val error: UiText? = null,
+    val isCalendarOpened: Boolean = false,
     val isBottomSheetOpened: Boolean = false
 ) : BaseState

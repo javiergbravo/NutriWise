@@ -2,18 +2,23 @@ package com.jgbravo.nutriwise.ui.feature.screens.createMealPlan
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
+import com.jgbravo.nutriwise.common.utils.DatePattern.SPANISH_DATE_PATTERN
+import com.jgbravo.nutriwise.common.utils.DateTimeUtil.formatDate
 import com.jgbravo.nutriwise.domain.usecases.CreateMealPlan
 import com.jgbravo.nutriwise.domain.usecases.models.NewMealPlan
 import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
 import com.jgbravo.nutriwise.ui.feature.models.UiText
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.ClickCreateMealPlan
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.CloseCalendar
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.CreateMealPlanSuccess
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnDismissBottomSheet
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnGoalChanged
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnKcalChanged
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnPersonNameChanged
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnStartDateChanged
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.SelectCalendarDate
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.ShowCalendar
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -64,6 +69,22 @@ class CreateMealPlanViewModel(
                 lastState.copy(
                     kcal = event.kcal,
                     kcalError = validateKcal(event.kcal)
+                )
+            }
+            is ShowCalendar -> mutableState.update { lastState ->
+                lastState.copy(
+                    isCalendarOpened = true
+                )
+            }
+            is SelectCalendarDate -> mutableState.update { lastState ->
+                lastState.copy(
+                    startDate = event.localDateTimeSelected.date.formatDate(SPANISH_DATE_PATTERN),
+                    isCalendarOpened = false
+                )
+            }
+            is CloseCalendar -> mutableState.update { lastState ->
+                lastState.copy(
+                    isCalendarOpened = false
                 )
             }
             ClickCreateMealPlan -> {

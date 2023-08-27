@@ -2,6 +2,7 @@ package com.jgbravo.nutriwise.ui.feature.screens.createMealPlan
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -36,15 +37,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.R.string
+import com.jgbravo.nutriwise.ui.feature.components.dialogs.CalendarDialog
+import com.jgbravo.nutriwise.ui.feature.components.text.FilledTextField
 import com.jgbravo.nutriwise.ui.feature.models.UiText
+import com.jgbravo.nutriwise.ui.feature.models.UiText.StringResource
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.ClickBack
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.ClickCreateMealPlan
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.CloseCalendar
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnDismissBottomSheet
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnGoalChanged
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnKcalChanged
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnPersonNameChanged
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.OnStartDateChanged
-import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.components.FilledTextField
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.SelectCalendarDate
+import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.ShowCalendar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -104,7 +110,7 @@ fun CreateMealPlanScreen(
             ) {
                 Spacer(modifier = Modifier.padding(8.dp))
                 FilledTextField(
-                    label = UiText.StringResource(string.person_name),
+                    label = StringResource(string.person_name),
                     text = state.personName,
                     onTextChange = { onEvent(OnPersonNameChanged(it)) },
                     error = state.personNameError,
@@ -115,7 +121,7 @@ fun CreateMealPlanScreen(
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
                 FilledTextField(
-                    label = UiText.StringResource(string.goal),
+                    label = StringResource(string.goal),
                     text = state.goal,
                     onTextChange = { onEvent(OnGoalChanged(it)) },
                     error = state.goalError,
@@ -125,18 +131,26 @@ fun CreateMealPlanScreen(
                         .background(Color.White)
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
-                FilledTextField(
-                    label = UiText.StringResource(string.start_date),
-                    text = state.startDate,
-                    onTextChange = { onEvent(OnStartDateChanged(it)) },
-                    isSingleLine = false,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.White)
-                )
+                Box {
+                    FilledTextField(
+                        label = StringResource(string.start_date),
+                        text = state.startDate,
+                        onTextChange = { onEvent(OnStartDateChanged(it)) },
+                        isSingleLine = false,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.White)
+                    )
+                    Box(modifier = Modifier
+                        .matchParentSize()
+                        .clickable {
+                            onEvent(ShowCalendar)
+                        }
+                    )
+                }
                 Spacer(modifier = Modifier.padding(8.dp))
                 FilledTextField(
-                    label = UiText.StringResource(string.kcal),
+                    label = StringResource(string.kcal),
                     text = state.kcal,
                     onTextChange = { onEvent(OnKcalChanged(it)) },
                     error = state.kcalError,
@@ -148,6 +162,13 @@ fun CreateMealPlanScreen(
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
             }
+        }
+
+        if (state.isCalendarOpened) {
+            CalendarDialog(
+                onConfirmDate = { onEvent(SelectCalendarDate(it)) },
+                onDismiss = { onEvent(CloseCalendar) }
+            )
         }
 
         if (state.isBottomSheetOpened) {

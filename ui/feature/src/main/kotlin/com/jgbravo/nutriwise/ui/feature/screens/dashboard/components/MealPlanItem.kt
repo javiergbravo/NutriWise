@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jgbravo.nutriwise.common.app.models.PlanState
 import com.jgbravo.nutriwise.common.app.models.PlanState.ACTIVE
-import com.jgbravo.nutriwise.common.utils.DatePatterns.SPANISH_DATE_PATTERN
+import com.jgbravo.nutriwise.common.utils.DatePattern.SPANISH_DATE_PATTERN
 import com.jgbravo.nutriwise.common.utils.DateTimeUtil
 import com.jgbravo.nutriwise.common.utils.DateTimeUtil.formatDate
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan

@@ -1,7 +1,7 @@
 package com.jgbravo.nutriwise.data.impl.mapers
 
 import com.jgbravo.nutriwise.common.app.models.PlanState
-import com.jgbravo.nutriwise.common.utils.DatePatterns
+import com.jgbravo.nutriwise.common.utils.DatePattern
 import com.jgbravo.nutriwise.common.utils.DateTimeUtil.formatDate
 import com.jgbravo.nutriwise.data.api.models.MealDataModel
 import com.jgbravo.nutriwise.data.api.models.MealPlanDataModel
@@ -22,7 +22,7 @@ internal fun MealDataModel.mapToEntity() = MealEntity().apply {
 internal fun MealPlanDataModel.mapToEntity() = MealPlanEntity().apply {
     _id = ObjectId(this@mapToEntity.id)
     person = this@mapToEntity.person
-    startDate = this@mapToEntity.startDate.formatDate(DatePatterns.SPANISH_DATE_PATTERN)
+    startDate = this@mapToEntity.startDate.formatDate(DatePattern.SPANISH_DATE_PATTERN)
     goal = this@mapToEntity.goal
     kcal = this@mapToEntity.kcal
     meals = this@mapToEntity.meals.map { meal -> meal.mapToEntity() }.toRealmList()

@@ -5,7 +5,7 @@ import com.jgbravo.nutriwise.common.app.models.PlanState
 import com.jgbravo.nutriwise.common.exceptions.custom.MappingException
 import com.jgbravo.nutriwise.common.exceptions.custom.MappingReason.INVALID_ENUM
 import com.jgbravo.nutriwise.common.extensions.getOrThrow
-import com.jgbravo.nutriwise.common.utils.DatePatterns.SPANISH_DATE_PATTERN
+import com.jgbravo.nutriwise.common.utils.DatePattern.SPANISH_DATE_PATTERN
 import com.jgbravo.nutriwise.common.utils.DateTimeUtil.toLocalDate
 import com.jgbravo.nutriwise.data.api.models.MealDataModel
 import com.jgbravo.nutriwise.data.api.models.MealPlanDataModel
@@ -25,7 +25,9 @@ internal fun MealEntity.mapToData() = MealDataModel(
 internal fun MealPlanEntity.mapToData() = MealPlanDataModel(
     id = ::_id.getOrThrow().toString(),
     person = ::person.getOrThrow(),
-    startDate = ::startDate.getOrThrow().toLocalDate(SPANISH_DATE_PATTERN),
+    startDate = ::startDate.getOrThrow().toLocalDate(
+        SPANISH_DATE_PATTERN
+    ) ?: throw MappingException("startDate", INVALID_ENUM),
     goal = ::goal.getOrThrow(),
     kcal = ::kcal.getOrThrow(),
     meals = meals.toList().map { meal -> meal.mapToData() },
