@@ -4,5 +4,5 @@ sealed class Resource<out T : Any> {
 
     data class Success<out T : Any>(val data: Any?) : Resource<T>()
 
-    data class Error(val exception: Throwable) : Resource<Nothing>()
+    data class Error(val exception: Exception) : Resource<Nothing>()
 }
