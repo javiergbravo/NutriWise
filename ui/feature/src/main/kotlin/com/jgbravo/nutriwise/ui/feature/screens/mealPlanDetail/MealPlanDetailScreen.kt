@@ -36,7 +36,7 @@ fun MealPlanDetailScreen(
     val context = LocalContext.current
 
     LaunchedEffect(key1 = state.error) {
-        val message = state.error ?: return@LaunchedEffect
+        val message = state.error?.asString(context) ?: return@LaunchedEffect
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         onEvent(OnErrorScreen)
     }

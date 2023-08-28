@@ -4,7 +4,9 @@ import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Error
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Success
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.transform
 
 inline fun <T : Any, R : Any> Flow<T?>.mapNullableAsResourceCatching(
@@ -54,3 +56,20 @@ inline fun <T : Any, R : Any> Flow<List<T>>.mapAsResourceListCatching(
             }
         }
     }
+
+inline fun <T : Any, R : Any> StateFlow<T>.combineWithFlow(
+    flowWithResource: Flow<Resource<R>>,
+    crossinline onSuccess: suspend (R) -> Unit,
+    crossinline onError: suspend (Exception) -> Unit
+): StateFlow<T> = combine(this, flowWithResource) { state, resource ->
+    return@combine when (resource) {
+        is Success -> {
+            if (resource.data == null) {
+                state
+            } else {
+                onSuccess(resource.data as R)
+            }
+        }
+        is Error -> onError(resource.exception)
+    }
+}.let { this }

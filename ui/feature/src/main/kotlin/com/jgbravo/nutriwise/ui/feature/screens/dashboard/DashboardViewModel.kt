@@ -2,10 +2,8 @@ package com.jgbravo.nutriwise.ui.feature.screens.dashboard
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Error
-import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Success
+import com.jgbravo.nutriwise.domain.base.models.utils.combineWithFlow
 import com.jgbravo.nutriwise.domain.usecases.GetAllMealPlans
-import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
 import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
 import com.jgbravo.nutriwise.ui.feature.models.UiText
@@ -14,7 +12,7 @@ import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnError
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnMealPlanClicked
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -24,25 +22,23 @@ class DashboardViewModel(
 ) : BaseViewModel<DashboardState, DashboardEvent>() {
 
     override val mutableState = MutableStateFlow(DashboardState())
-    override val state = combine(mutableState, getAllMealPlans.invoke()) { state, mealPlansResource ->
-        when (mealPlansResource) {
-            is Error -> mutableState.update { lastState ->
+    override val state: StateFlow<DashboardState> = mutableState.combineWithFlow(
+        flowWithResource = getAllMealPlans.invoke(),
+        onSuccess = { mealPlans ->
+            mutableState.update { lastState ->
+                lastState.copy(plans = mealPlans)
+            }
+        },
+        onError = { exception ->
+            mutableState.update { lastState ->
                 lastState.copy(
-                    error = mealPlansResource.exception.message?.let {
+                    error = exception.message?.let {
                         UiText.DynamicString(it)
                     } ?: UiText.StringResource(R.string.generic_error)
                 )
             }
-            is Success -> mutableState.update { lastState ->
-                if (mealPlansResource.data == null) {
-                    lastState.copy(error = UiText.StringResource(R.string.generic_error))
-                } else {
-                    lastState.copy(plans = mealPlansResource.data as List<MealPlan>)
-                }
-            }
         }
-        state
-    }.onEach {
+    ).onEach {
         Log.d("DashboardViewModel", "[DashboardState] state=$it")
     }.stateIn(
         scope = viewModelScope,
