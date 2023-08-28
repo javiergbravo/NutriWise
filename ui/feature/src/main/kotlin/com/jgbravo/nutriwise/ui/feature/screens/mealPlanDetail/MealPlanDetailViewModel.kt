@@ -8,7 +8,7 @@ import com.jgbravo.nutriwise.domain.usecases.GetMealPlan
 import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
 import com.jgbravo.nutriwise.ui.feature.models.UiText
-import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.OnErrorScreen
+import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.HideError
 import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.OnMealClicked
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -51,7 +51,7 @@ class MealPlanDetailViewModel(
     override fun onEvent(event: MealPlanDetailEvent) {
         Log.d("MealPlanDetailViewModel", "[MealPlanDetailEvent] onEvent=$event")
         when (event) {
-            OnErrorScreen -> mutableState.update { lastState ->
+            HideError -> mutableState.update { lastState ->
                 lastState.copy(error = null)
             }
             is OnMealClicked -> Unit

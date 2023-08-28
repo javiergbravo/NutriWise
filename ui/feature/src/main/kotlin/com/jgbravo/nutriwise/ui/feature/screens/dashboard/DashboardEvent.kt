@@ -7,5 +7,5 @@ sealed interface DashboardEvent : BaseEvent {
 
     object CreateMealPlan : DashboardEvent
     data class OnMealPlanClicked(val mealPlan: MealPlan) : DashboardEvent
-    object OnErrorScreen : DashboardEvent
+    object HideError : DashboardEvent
 }

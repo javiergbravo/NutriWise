@@ -29,6 +29,7 @@ import com.jgbravo.nutriwise.common.utils.DateTimeUtil
 import com.jgbravo.nutriwise.common.utils.DateTimeUtil.minusMonths
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.CreateMealPlan
+import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.HideError
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnMealPlanClicked
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.components.MealPlanItem
 
@@ -42,7 +43,7 @@ fun DashboardScreen(
     LaunchedEffect(key1 = state.error) {
         val message = state.error?.asString(context) ?: return@LaunchedEffect
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-//        onEvent(OnErrorScreen)
+        onEvent(HideError)
     }
 
     Scaffold(

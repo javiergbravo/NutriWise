@@ -8,7 +8,7 @@ import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
 import com.jgbravo.nutriwise.ui.feature.models.UiText
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.CreateMealPlan
-import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnErrorScreen
+import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.HideError
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnMealPlanClicked
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -49,7 +49,7 @@ class DashboardViewModel(
     override fun onEvent(event: DashboardEvent) {
         Log.d("DashboardViewModel", "[DashboardEvent] onEvent=$event")
         when (event) {
-            OnErrorScreen -> mutableState.update { lastState ->
+            HideError -> mutableState.update { lastState ->
                 lastState.copy(error = null)
             }
             is CreateMealPlan,

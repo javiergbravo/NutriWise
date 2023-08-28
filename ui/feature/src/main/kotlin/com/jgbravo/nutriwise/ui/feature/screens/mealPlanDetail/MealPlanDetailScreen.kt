@@ -23,7 +23,7 @@ import com.jgbravo.nutriwise.common.app.models.MealType.DINNER
 import com.jgbravo.nutriwise.common.app.models.MealType.LUNCH
 import com.jgbravo.nutriwise.common.app.models.MealType.MORNING_SNACK
 import com.jgbravo.nutriwise.domain.usecases.models.Meal
-import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.OnErrorScreen
+import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.HideError
 import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.OnMealClicked
 import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.components.MealItem
 
@@ -38,7 +38,7 @@ fun MealPlanDetailScreen(
     LaunchedEffect(key1 = state.error) {
         val message = state.error?.asString(context) ?: return@LaunchedEffect
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-        onEvent(OnErrorScreen)
+        onEvent(HideError)
     }
 
     Scaffold { padding ->

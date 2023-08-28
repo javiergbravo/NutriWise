@@ -6,5 +6,5 @@ import com.jgbravo.nutriwise.ui.feature.base.BaseEvent
 sealed interface MealPlanDetailEvent : BaseEvent {
 
     data class OnMealClicked(val meal: Meal) : MealPlanDetailEvent
-    object OnErrorScreen : MealPlanDetailEvent
+    object HideError : MealPlanDetailEvent
 }
