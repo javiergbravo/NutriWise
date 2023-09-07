@@ -14,6 +14,7 @@ enum class MappingReason(val msg: String) {
     PROPERTY_EMPTY("Property value is empty"),
     INVALID_NUMBER("Invalid number"),
     INVALID_ENUM("Invalid enum value"),
+    INVALID_DATE("Invalid date"),
     PROPERTY_NOT_FOUND("Model has not this property"),
     BUILD_OBJECT("Error building object")
 }

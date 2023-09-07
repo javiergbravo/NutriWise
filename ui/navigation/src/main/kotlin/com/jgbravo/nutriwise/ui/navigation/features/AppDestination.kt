@@ -14,13 +14,15 @@ sealed class AppDestination(protected val route: String, vararg params: String) 
         operator fun invoke(): String = route
     }
 
-    object DashboardDestination : NoArgumentDestination("dashboard")
+    data object SplashDestination : NoArgumentDestination("splash")
 
-    object MealPlanDetailDestination : AppDestination("mealPlanDetail", MEAL_PLAN_ID) {
+    data object DashboardDestination : NoArgumentDestination("dashboard")
+
+    data object MealPlanDetailDestination : AppDestination("mealPlanDetail", MEAL_PLAN_ID) {
         operator fun invoke(mealPlanId: String): String = route.replace("{$MEAL_PLAN_ID}", mealPlanId)
     }
 
-    object CreateMealPlanDestination : NoArgumentDestination("createMealPlan")
+    data object CreateMealPlanDestination : NoArgumentDestination("createMealPlan")
 
     companion object Argument {
         const val MEAL_PLAN_ID = "mealPlanId"

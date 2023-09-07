@@ -8,7 +8,6 @@ import com.jgbravo.nutriwise.data.api.models.MealPlanDataModel
 import com.jgbravo.nutriwise.data.api.models.NewMealPlanDataModel
 import com.jgbravo.nutriwise.data.impl.db.models.MealEntity
 import com.jgbravo.nutriwise.data.impl.db.models.MealPlanEntity
-import io.realm.kotlin.ext.toRealmList
 import org.mongodb.kbson.ObjectId
 
 internal fun MealDataModel.mapToEntity() = MealEntity().apply {
@@ -23,14 +22,13 @@ internal fun MealPlanDataModel.mapToEntity() = MealPlanEntity().apply {
     _id = ObjectId(this@mapToEntity.id)
     person = this@mapToEntity.person
     startDate = this@mapToEntity.startDate.formatDate(DatePattern.SPANISH_DATE_PATTERN)
-    goal = this@mapToEntity.goal
+    this@mapToEntity.goal?.let { goal = it }
     kcal = this@mapToEntity.kcal
-    meals = this@mapToEntity.meals.map { meal -> meal.mapToEntity() }.toRealmList()
+//    meals = this@mapToEntity.meals.map { meal -> meal.mapToEntity() }.toRealmList()
     state = this@mapToEntity.state.name
 }
 
 internal fun NewMealPlanDataModel.mapToEntity() = MealPlanEntity().apply {
-    _id = ObjectId.invoke()
     person = this@mapToEntity.person
     startDate = this@mapToEntity.startDate // TODO: change to LocalDate
     goal = this@mapToEntity.goal

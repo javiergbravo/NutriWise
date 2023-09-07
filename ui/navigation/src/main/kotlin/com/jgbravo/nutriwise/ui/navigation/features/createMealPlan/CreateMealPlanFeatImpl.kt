@@ -21,7 +21,7 @@ class CreateMealPlanFeatImpl : CreateMealPlanFeatApi {
     ) {
         navGraphBuilder.destinationComposable(
             destination = CreateMealPlanDestination
-        ) { backStackEntry ->
+        ) {
 
             val viewModel = koinViewModel<CreateMealPlanViewModel>()
             val state by viewModel.state.collectAsState()

@@ -1,8 +1,6 @@
 package com.jgbravo.nutriwise.data.impl.db.models
 
-import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmInstant
-import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.Index
 import io.realm.kotlin.types.annotations.PrimaryKey
@@ -11,11 +9,12 @@ import org.mongodb.kbson.ObjectId
 class MealPlanEntity : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId.invoke()
-    var person: String? = null
-    var startDate: String? = null
-    var goal: String? = null
-    var kcal: Int? = null
-    var meals: RealmList<MealEntity> = realmListOf()
+    var person: String = ""
+    var startDate: String = ""
+    var goal: String = ""
+    var kcal: Int = -1
+
+    //    var meals: RealmList<MealEntity> = realmListOf()
     var state: String = "active"
 
     @Index
