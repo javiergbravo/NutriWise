@@ -5,5 +5,5 @@ data class NewMealPlanDataModel(
     var startDate: String,
     var goal: String,
     var kcal: Int,
-//    var meals: List<MealDataModel>
+    var meals: List<MealDataModel>
 )

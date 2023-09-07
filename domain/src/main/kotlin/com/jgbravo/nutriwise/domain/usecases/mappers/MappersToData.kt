@@ -22,7 +22,7 @@ internal fun NewMealPlan.toData() = NewMealPlanDataModel(
     startDate = startDate,
     goal = goal,
     kcal = kcal,
-//    meals = emptyList(),
+    meals = emptyList(),
 )
 
 internal fun Meal.toData() = MealDataModel(

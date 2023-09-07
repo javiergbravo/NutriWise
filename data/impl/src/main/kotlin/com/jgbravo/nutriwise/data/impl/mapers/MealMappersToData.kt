@@ -14,7 +14,7 @@ import com.jgbravo.nutriwise.data.impl.db.models.MealEntity
 import com.jgbravo.nutriwise.data.impl.db.models.MealPlanEntity
 
 internal fun MealEntity.mapToData() = MealDataModel(
-    id = ::_id.getOrThrow().toString(),
+    id = ::id.getOrThrow().toString(),
     type = MealType.values().find {
         it.value == ::type.getOrThrow()
     } ?: throw MappingException("type", INVALID_ENUM),
@@ -24,13 +24,13 @@ internal fun MealEntity.mapToData() = MealDataModel(
 )
 
 internal fun MealPlanEntity.mapToData() = MealPlanDataModel(
-    id = ::_id.getOrThrow().toHexString(),
+    id = ::id.getOrThrow().toHexString(),
     person = ::person.getOrThrow(),
     startDate = ::startDate.getOrThrow().toLocalDate(
         SPANISH_DATE_PATTERN
     ) ?: throw MappingException("startDate", INVALID_DATE),
     goal = ::goal.getOrThrow(),
     kcal = ::kcal.getOrThrow(),
-    meals = emptyList(), // meals.toList().map { meal -> meal.mapToData() },
+    meals = meals.toList().map { meal -> meal.mapToData() },
     state = PlanState.valueOf(::state.getOrThrow())
 )
