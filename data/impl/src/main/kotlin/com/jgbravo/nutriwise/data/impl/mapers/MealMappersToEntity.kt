@@ -25,13 +25,13 @@ internal fun MealPlanDataModel.mapToEntity() = MealPlanEntity().apply {
     startDate = this@mapToEntity.startDate.formatDate(DatePattern.SPANISH_DATE_PATTERN)
     this@mapToEntity.goal?.let { goal = it }
     kcal = this@mapToEntity.kcal
-//    meals = this@mapToEntity.meals.map { meal -> meal.mapToEntity() }.toRealmList()
+    meals = this@mapToEntity.meals.map { meal -> meal.mapToEntity() }.toRealmList()
     state = this@mapToEntity.state.name
 }
 
 internal fun NewMealPlanDataModel.mapToEntity() = MealPlanEntity().apply {
     person = this@mapToEntity.person
-    startDate = this@mapToEntity.startDate // TODO: change to LocalDate
+    startDate = this@mapToEntity.startDate
     goal = this@mapToEntity.goal
     kcal = this@mapToEntity.kcal
     meals = this@mapToEntity.meals.map { meal -> meal.mapToEntity() }.toRealmList()
