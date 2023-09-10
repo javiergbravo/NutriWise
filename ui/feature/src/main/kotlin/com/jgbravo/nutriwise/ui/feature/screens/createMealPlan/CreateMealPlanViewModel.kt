@@ -2,8 +2,8 @@ package com.jgbravo.nutriwise.ui.feature.screens.createMealPlan
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.jgbravo.nutriwise.common.utils.DatePattern.SPANISH_DATE_PATTERN
-import com.jgbravo.nutriwise.common.utils.DateTimeUtil.formatDate
+import com.jgbravo.common.app.dates.DatePattern.SPANISH_DATE_PATTERN
+import com.jgbravo.common.app.dates.DateTimeUtil.formatDate
 import com.jgbravo.nutriwise.domain.usecases.CreateMealPlan
 import com.jgbravo.nutriwise.domain.usecases.models.NewMealPlan
 import com.jgbravo.nutriwise.ui.feature.R

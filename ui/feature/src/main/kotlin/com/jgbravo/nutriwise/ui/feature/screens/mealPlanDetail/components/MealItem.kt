@@ -23,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jgbravo.nutriwise.common.app.models.MealType.BREAKFAST
+import com.jgbravo.common.app.models.MealType.BREAKFAST
 import com.jgbravo.nutriwise.domain.usecases.models.Meal
 import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.models.getNameRes

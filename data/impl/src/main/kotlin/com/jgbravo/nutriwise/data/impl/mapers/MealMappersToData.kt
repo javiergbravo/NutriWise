@@ -1,13 +1,13 @@
 package com.jgbravo.nutriwise.data.impl.mapers
 
-import com.jgbravo.nutriwise.common.app.models.MealType
-import com.jgbravo.nutriwise.common.app.models.PlanState
-import com.jgbravo.nutriwise.common.exceptions.custom.MappingException
-import com.jgbravo.nutriwise.common.exceptions.custom.MappingReason.INVALID_DATE
-import com.jgbravo.nutriwise.common.exceptions.custom.MappingReason.INVALID_ENUM
-import com.jgbravo.nutriwise.common.extensions.getOrThrow
-import com.jgbravo.nutriwise.common.utils.DatePattern.SPANISH_DATE_PATTERN
-import com.jgbravo.nutriwise.common.utils.DateTimeUtil.toLocalDate
+import com.jgbravo.common.app.dates.DatePattern.SPANISH_DATE_PATTERN
+import com.jgbravo.common.app.dates.DateTimeUtil.toLocalDate
+import com.jgbravo.common.app.models.MealType
+import com.jgbravo.common.app.models.PlanState
+import com.jgbravo.common.core.exceptions.custom.MappingException
+import com.jgbravo.common.core.exceptions.custom.MappingReason.INVALID_DATE
+import com.jgbravo.common.core.exceptions.custom.MappingReason.INVALID_ENUM
+import com.jgbravo.common.core.extensions.getOrThrow
 import com.jgbravo.nutriwise.data.api.models.MealDataModel
 import com.jgbravo.nutriwise.data.api.models.MealPlanDataModel
 import com.jgbravo.nutriwise.data.impl.db.models.MealEntity
@@ -15,7 +15,7 @@ import com.jgbravo.nutriwise.data.impl.db.models.MealPlanEntity
 
 internal fun MealEntity.mapToData() = MealDataModel(
     id = ::id.getOrThrow().toString(),
-    type = MealType.values().find {
+    type = MealType.entries.find {
         it.value == ::type.getOrThrow()
     } ?: throw MappingException("type", INVALID_ENUM),
     carbs = ::carbs.getOrThrow(),

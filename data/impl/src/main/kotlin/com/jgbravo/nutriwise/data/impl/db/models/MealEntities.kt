@@ -1,6 +1,6 @@
 package com.jgbravo.nutriwise.data.impl.db.models
 
-import com.jgbravo.nutriwise.common.app.models.PlanState
+import com.jgbravo.common.app.models.PlanState
 import com.jgbravo.nutriwise.data.impl.base.DefaultValues
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmInstant

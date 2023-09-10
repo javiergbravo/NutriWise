@@ -22,11 +22,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jgbravo.nutriwise.common.app.models.PlanState.ACTIVE
-import com.jgbravo.nutriwise.common.app.models.PlanState.END
-import com.jgbravo.nutriwise.common.app.models.PlanState.STOPPED
-import com.jgbravo.nutriwise.common.utils.DateTimeUtil
-import com.jgbravo.nutriwise.common.utils.DateTimeUtil.minusMonths
+import com.jgbravo.common.app.dates.DateTimeUtil.minusMonths
+import com.jgbravo.common.app.models.PlanState
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.CreateMealPlan
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnMealPlanClicked
@@ -85,7 +82,7 @@ fun DashboardScreen(
 @Preview(name = "Light Mode", uiMode = Configuration.UI_MODE_NIGHT_NO, showSystemUi = true)
 @Composable
 fun DashboardScreenPreview() {
-    val today = DateTimeUtil.now().date
+    val today = com.jgbravo.common.app.dates.DateTimeUtil.now().date
     DashboardScreen(
         state = DashboardState(
             plans = listOf(
@@ -96,7 +93,7 @@ fun DashboardScreenPreview() {
                     goal = "Pérdida de grasa",
                     kcal = 2600,
                     meals = emptyList(),
-                    state = ACTIVE
+                    state = PlanState.ACTIVE
                 ),
                 MealPlan(
                     id = "2",
@@ -105,7 +102,7 @@ fun DashboardScreenPreview() {
                     goal = "Volumen",
                     kcal = 3000,
                     meals = emptyList(),
-                    state = STOPPED
+                    state = PlanState.STOPPED
                 ),
                 MealPlan(
                     id = "3",
@@ -114,7 +111,7 @@ fun DashboardScreenPreview() {
                     goal = "This is a description",
                     kcal = 2300,
                     meals = emptyList(),
-                    state = END
+                    state = PlanState.END
                 )
             )
         ),

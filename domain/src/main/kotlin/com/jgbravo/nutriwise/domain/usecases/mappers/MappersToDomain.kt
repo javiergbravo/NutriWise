@@ -1,6 +1,6 @@
 package com.jgbravo.nutriwise.domain.usecases.mappers
 
-import com.jgbravo.nutriwise.common.utils.EMPTY_STRING
+import com.jgbravo.common.core.utils.EMPTY_STRING
 import com.jgbravo.nutriwise.data.api.models.MealDataModel
 import com.jgbravo.nutriwise.data.api.models.MealPlanDataModel
 import com.jgbravo.nutriwise.domain.usecases.models.Meal

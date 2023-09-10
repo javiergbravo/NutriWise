@@ -49,7 +49,7 @@ android {
 
 dependencies {
 
-    implementation(project(":common"))
+    implementation(project(":common:core"))
     implementation(project(":ui:navigation"))
     implementation(project(":ui:api"))
     implementation(project(":ui:di"))

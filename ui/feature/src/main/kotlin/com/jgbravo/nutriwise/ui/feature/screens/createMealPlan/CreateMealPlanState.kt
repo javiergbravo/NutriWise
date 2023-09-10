@@ -1,6 +1,6 @@
 package com.jgbravo.nutriwise.ui.feature.screens.createMealPlan
 
-import com.jgbravo.nutriwise.common.utils.EMPTY_STRING
+import com.jgbravo.common.core.utils.EMPTY_STRING
 import com.jgbravo.nutriwise.ui.feature.base.BaseState
 import com.jgbravo.nutriwise.ui.feature.models.UiText
 

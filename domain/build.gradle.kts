@@ -31,7 +31,8 @@ android {
 
 dependencies {
 
-    implementation(project(":common"))
+    implementation(project(":common:core"))
+    implementation(project(":common:app"))
     implementation(project(":data:api"))
 
     implementation(libs.koin)

@@ -1,6 +1,6 @@
 package com.jgbravo.nutriwise.domain.usecases.models
 
-import com.jgbravo.nutriwise.common.app.models.MealType
+import com.jgbravo.common.app.models.MealType
 
 data class Meal(
     val id: String,

@@ -10,7 +10,7 @@ import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jgbravo.nutriwise.common.utils.DateTimeUtil
+import com.jgbravo.common.app.dates.DateTimeUtil
 import com.jgbravo.nutriwise.ui.feature.R.string
 import com.jgbravo.nutriwise.ui.feature.models.UiText.StringResource
 import kotlinx.datetime.LocalDateTime

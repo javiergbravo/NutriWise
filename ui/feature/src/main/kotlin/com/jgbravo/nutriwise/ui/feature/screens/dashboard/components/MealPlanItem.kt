@@ -21,11 +21,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jgbravo.nutriwise.common.app.models.PlanState
-import com.jgbravo.nutriwise.common.app.models.PlanState.ACTIVE
-import com.jgbravo.nutriwise.common.utils.DatePattern.SPANISH_DATE_PATTERN
-import com.jgbravo.nutriwise.common.utils.DateTimeUtil
-import com.jgbravo.nutriwise.common.utils.DateTimeUtil.formatDate
+import com.jgbravo.common.app.dates.DatePattern.SPANISH_DATE_PATTERN
+import com.jgbravo.common.app.dates.DateTimeUtil.formatDate
+import com.jgbravo.common.app.models.PlanState
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
 import com.jgbravo.nutriwise.ui.api.theme.GreenActive
 import com.jgbravo.nutriwise.ui.api.theme.GreyInactive
@@ -114,11 +112,11 @@ fun MealPlanItemPreview() {
         mealPlan = MealPlan(
             id = "1",
             person = "John Doe",
-            startDate = DateTimeUtil.now().date,
+            startDate = com.jgbravo.common.app.dates.DateTimeUtil.now().date,
             goal = "Pérdida de grasa",
             kcal = 2600,
             meals = emptyList(),
-            state = ACTIVE
+            state = PlanState.ACTIVE
         ),
         onMealPlanClick = {}
     )

@@ -1,6 +1,6 @@
 package com.jgbravo.nutriwise.domain.usecases.models
 
-import com.jgbravo.nutriwise.common.app.models.PlanState
+import com.jgbravo.common.app.models.PlanState
 import kotlinx.datetime.LocalDate
 
 data class MealPlan(
