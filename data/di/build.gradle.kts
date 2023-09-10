@@ -25,5 +25,5 @@ dependencies {
     implementation(project(":data:api"))
     implementation(project(":data:impl"))
 
-    implementation(libs.koin)
+    implementation(libs.koin.android)
 }

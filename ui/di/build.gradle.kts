@@ -27,5 +27,5 @@ dependencies {
     implementation(project(":ui:navigation"))
     implementation(project(":domain"))
 
-    implementation(libs.koin)
+    implementation(libs.koin.android)
 }

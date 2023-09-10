@@ -27,7 +27,7 @@ dependencies {
     implementation(project(":common:app"))
     implementation(project(":data:api"))
 
-    implementation(libs.koin)
+    implementation(libs.koin.android)
     implementation(libs.coroutines)
     implementation(libs.realm)
     implementation(libs.kotlin.datetime)

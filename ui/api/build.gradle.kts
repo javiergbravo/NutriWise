@@ -48,7 +48,7 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.ui.material3)
     implementation(libs.ui.navigation)
-    implementation(libs.koin)
+    implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.kotlin.datetime)
 
