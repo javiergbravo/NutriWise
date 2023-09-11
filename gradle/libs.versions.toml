@@ -17,6 +17,7 @@ coroutines = "1.7.3"
 ktor = "2.1.3"
 datetime = "0.4.0"
 realm = "1.10.2"
+napier = "2.6.1"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -48,6 +49,7 @@ ktor = { group = "io.ktor", name = "ktor-client-core", version = "ktor" }
 ktor-android = { group = "io.ktor", name = "ktor-client-android", version = "ktor" }
 ktor-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version = "ktor" }
 ktor-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version = "ktor" }
+napier = { group = "io.github.aakira", name = "napier", version.ref = "napier" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
