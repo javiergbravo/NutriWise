@@ -4,7 +4,13 @@ plugins {
 }
 
 kotlin {
-    androidTarget()
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_1_8.toString()
+            }
+        }
+    }
 
     listOf(
         iosX64(),
@@ -71,5 +77,4 @@ android {
 
 tasks.withType(type = org.jetbrains.kotlin.gradle.internal.KaptGenerateStubsTask::class) {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
-
 }
