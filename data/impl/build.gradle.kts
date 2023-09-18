@@ -26,6 +26,7 @@ dependencies {
     implementation(project(":common:core"))
     implementation(project(":common:app"))
     implementation(project(":data:api"))
+    implementation(project(":logger"))
 
     implementation(libs.koin.android)
     implementation(libs.coroutines)

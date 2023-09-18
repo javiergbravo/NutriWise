@@ -4,7 +4,6 @@ plugins {
 
 dependencies {
 
-    api(project(":logger"))
     implementation(libs.coroutines)
     implementation(libs.kotlin.datetime)
 }

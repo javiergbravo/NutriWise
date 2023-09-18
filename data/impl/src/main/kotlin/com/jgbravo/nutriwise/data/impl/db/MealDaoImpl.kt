@@ -1,6 +1,7 @@
 package com.jgbravo.nutriwise.data.impl.db
 
 import android.util.Log
+import com.jgbravo.logger.Logger
 import com.jgbravo.nutriwise.data.impl.base.RealmQuery
 import com.jgbravo.nutriwise.data.impl.db.models.MealPlanEntity
 import io.realm.kotlin.Realm
@@ -17,7 +18,7 @@ class MealDaoImpl(
     override fun fetchAllMealPlans(): Flow<List<MealPlanEntity>> {
         return realm.query<MealPlanEntity>().find().asFlow().distinctUntilChanged().map { it.list.toList() }
             .onEach {
-                Log.d("MealDaoImpl", "fetchAllMealPlans: $it")
+                Logger.d("MealDaoImpl", "fetchAllMealPlans: $it")
             }
     }
 

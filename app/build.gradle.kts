@@ -50,6 +50,7 @@ android {
 dependencies {
 
     implementation(project(":common:core"))
+    implementation(project(":logger"))
     implementation(project(":ui:navigation"))
     implementation(project(":ui:api"))
     implementation(project(":ui:di"))

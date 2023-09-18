@@ -1,13 +1,14 @@
 package com.jgbravo.nutriwise.ui.feature.screens.dashboard
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
+import com.jgbravo.logger.Logger
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Error
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Success
 import com.jgbravo.nutriwise.domain.usecases.GetAllMealPlans
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
 import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
+import com.jgbravo.nutriwise.ui.feature.base.STATE_STOP_TIMEOUT
 import com.jgbravo.nutriwise.ui.feature.models.UiText
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.CreateMealPlan
 import com.jgbravo.nutriwise.ui.feature.screens.dashboard.DashboardEvent.OnErrorScreen
@@ -43,15 +44,15 @@ class DashboardViewModel(
         }
         state
     }.onEach {
-        Log.d("DashboardViewModel", "[DashboardState] state=$it")
+        Logger.d("DashboardViewModel", "[DashboardState] state=$it")
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(STATE_STOP_TIMEOUT),
         initialValue = DashboardState()
     )
 
     override fun onEvent(event: DashboardEvent) {
-        Log.d("DashboardViewModel", "[DashboardEvent] onEvent=$event")
+        Logger.d("DashboardViewModel", "[DashboardEvent] onEvent=$event")
         when (event) {
             OnErrorScreen -> mutableState.update { lastState ->
                 lastState.copy(error = null)

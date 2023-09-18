@@ -1,13 +1,14 @@
 package com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.jgbravo.logger.Logger
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Error
 import com.jgbravo.nutriwise.domain.base.models.wrappers.Resource.Success
 import com.jgbravo.nutriwise.domain.usecases.GetMealPlan
 import com.jgbravo.nutriwise.domain.usecases.models.MealPlan
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
+import com.jgbravo.nutriwise.ui.feature.base.STATE_STOP_TIMEOUT
 import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.OnErrorScreen
 import com.jgbravo.nutriwise.ui.feature.screens.mealPlanDetail.MealPlanDetailEvent.OnMealClicked
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,15 +39,15 @@ class MealPlanDetailViewModel(
         }
         state
     }.onEach {
-        Log.d("MealPlanDetailViewModel", "[MealPlanDetailState] state=$it")
+        Logger.d("MealPlanDetailViewModel", "[MealPlanDetailState] state=$it")
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(STATE_STOP_TIMEOUT),
         initialValue = MealPlanDetailState()
     )
 
     override fun onEvent(event: MealPlanDetailEvent) {
-        Log.d("MealPlanDetailViewModel", "[MealPlanDetailEvent] onEvent=$event")
+        Logger.d("MealPlanDetailViewModel", "[MealPlanDetailEvent] onEvent=$event")
         when (event) {
             OnErrorScreen -> mutableState.update { lastState ->
                 lastState.copy(error = null)

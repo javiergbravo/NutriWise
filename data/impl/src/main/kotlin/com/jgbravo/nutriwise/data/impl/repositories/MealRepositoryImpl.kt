@@ -1,6 +1,6 @@
 package com.jgbravo.nutriwise.data.impl.repositories
 
-import android.util.Log
+import com.jgbravo.logger.Logger
 import com.jgbravo.nutriwise.data.api.models.MealPlanDataModel
 import com.jgbravo.nutriwise.data.api.models.NewMealPlanDataModel
 import com.jgbravo.nutriwise.data.api.repositories.MealRepository
@@ -20,14 +20,14 @@ class MealRepositoryImpl(
     override fun getAllMealPlans(): Flow<List<MealPlanDataModel>> = dao.fetchAllMealPlans()
         .distinctUntilChanged()
         .onEach {
-            Log.d("MealRepositoryImpl", "getAllMealPlans: $it")
+            Logger.d("MealRepositoryImpl", "getAllMealPlans: $it")
         }
         .map { planList -> planList.map { it.mapToData() } }
         .flowOn(Dispatchers.IO)
 
     override fun getMealPlan(id: String): Flow<MealPlanDataModel?> = dao.fetchMealPlan(id)
         .onEach {
-            Log.d("MealRepositoryImpl", "getMealPlan: $it")
+            Logger.d("MealRepositoryImpl", "getMealPlan: $it")
         }
         .distinctUntilChanged()
         .map { it?.mapToData() }

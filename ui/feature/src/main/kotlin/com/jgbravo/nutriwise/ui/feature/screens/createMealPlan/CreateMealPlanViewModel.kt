@@ -1,13 +1,14 @@
 package com.jgbravo.nutriwise.ui.feature.screens.createMealPlan
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.jgbravo.common.app.dates.DatePattern.SPANISH_DATE_PATTERN
 import com.jgbravo.common.app.dates.DateTimeUtil.formatDate
+import com.jgbravo.logger.Logger
 import com.jgbravo.nutriwise.domain.usecases.CreateMealPlan
 import com.jgbravo.nutriwise.domain.usecases.models.NewMealPlan
 import com.jgbravo.nutriwise.ui.feature.R
 import com.jgbravo.nutriwise.ui.feature.base.BaseViewModel
+import com.jgbravo.nutriwise.ui.feature.base.STATE_STOP_TIMEOUT
 import com.jgbravo.nutriwise.ui.feature.models.UiText
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.ClickCreateMealPlan
 import com.jgbravo.nutriwise.ui.feature.screens.createMealPlan.CreateMealPlanEvent.CloseCalendar
@@ -37,17 +38,17 @@ class CreateMealPlanViewModel(
     override val state: StateFlow<CreateMealPlanState>
         get() = mutableState.asStateFlow()
             .onEach {
-                Log.d("CreateMealPlanViewModel", "[CreateMealPlanState] state=$it")
+                Logger.d("CreateMealPlanViewModel", "[CreateMealPlanState] state=$it")
             }
             .distinctUntilChanged()
             .stateIn(
                 scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
+                started = SharingStarted.WhileSubscribed(STATE_STOP_TIMEOUT),
                 initialValue = CreateMealPlanState()
             )
 
     override fun onEvent(event: CreateMealPlanEvent) {
-        Log.d("CreateMealPlanViewModel", "[CreateMealPlanEvent] onEvent=$event")
+        Logger.d("CreateMealPlanViewModel", "[CreateMealPlanEvent] onEvent=$event")
         when (event) {
             is OnPersonNameChanged -> mutableState.update { lastState ->
                 lastState.copy(

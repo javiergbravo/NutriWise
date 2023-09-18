@@ -39,9 +39,10 @@ android {
 
 dependencies {
 
-    implementation(project(":ui:api"))
     implementation(project(":common:core"))
     implementation(project(":common:app"))
+    implementation(project(":logger"))
+    implementation(project(":ui:api"))
     implementation(project(":domain"))
 
     implementation(libs.core.ktx)
